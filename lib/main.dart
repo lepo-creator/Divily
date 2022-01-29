@@ -37,7 +37,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'Index 2: Account',
       style: optionStyle,
     ),
   ];
@@ -52,7 +52,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BottomNavigationBar Sample'),
+        title: const Text('Divily'),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -68,8 +68,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             label: 'Business',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.account_circle_outlined),
+            label: 'Account',
           ),
         ],
         currentIndex: _selectedIndex,
