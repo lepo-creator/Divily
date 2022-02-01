@@ -44,9 +44,47 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: ElevatedButton(
-            child: const Text('Zurück'),
-            onPressed: () => Navigator.pop(context)));
+    return MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: const Text('Suche'),
+              backgroundColor: Colors.teal.shade300,
+            ),
+            body: Center(
+              child: ElevatedButton(
+                  child: const Text('Zurück'),
+                  onPressed: () => Navigator.pop(context)),
+            )));
   }
 }
+
+/*MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('Suche'),
+          backgroundColor: Colors.teal.shade300,
+        ),
+        body: Center(
+            child: ElevatedButton(
+                child: Text('Suchen'),
+                onPressed: () =>
+                    Navigator.of(context).push(SearchPage.route()))),
+      ),  onPressed: () => Navigator.pop(context)));
+
+
+GridView.count(
+      crossAxisCount: 2,
+      children: [
+        ElevatedButton(
+            child: const Text('Zurück'),
+            onPressed: () => Navigator.pop(context)),
+        Align(
+          alignment: Alignment.center,
+          child: Text('Hallo'),
+        ),
+      ],
+    );
+
+    */
