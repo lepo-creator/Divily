@@ -1,3 +1,6 @@
+//file import
+import './pages/page1.dart';
+
 import 'package:flutter/cupertino.dart'; // imports cupertino package for fancy layouts
 import 'package:flutter/material.dart'; // imports material package for material app class
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart'; // imports Parse Server lib for Back4App
@@ -118,28 +121,7 @@ class Page0 extends StatelessWidget {
   }
 }
 
-class Page1 extends StatelessWidget {
-  //Page 1
-  const Page1({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Titel Seite 1'),
-          backgroundColor: Colors.teal.shade300,
-        ),
-        body: const Center(
-          child: Text('Hallo Page 1'),
-        ),
-      ),
-    );
-  }
-}
-
 class Page2 extends StatelessWidget {
-  //Page 2
   const Page2({Key? key}) : super(key: key);
 
   @override
