@@ -1,11 +1,11 @@
-//file import
-import './pages/page1.dart';
-import './pages/page0.dart';
-
 import 'package:flutter/cupertino.dart'; // imports cupertino package for fancy layouts
 import 'package:flutter/material.dart'; // imports material package for material app class
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart'; // imports Parse Server lib for Back4App
 //import 'package:provider/provider.dart';
+
+//file import
+import './pages/page1.dart';
+import './pages/page0.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,6 +57,12 @@ class MyHomePage extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle_rounded, color: Colors.white),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.mail_rounded, color: Colors.white),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.star_rounded, color: Colors.white),
           ),
         ],
       ),
