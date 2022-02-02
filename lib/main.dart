@@ -6,10 +6,8 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart'; // imports Pars
 import './pages/page1.dart';
 import './pages/page0.dart';
 import './pages/page2.dart';
-
-//file import
-import './pages/page1.dart';
-import './pages/page0.dart';
+import './pages/favorites.dart';
+import './pages/messenger.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,19 +52,19 @@ class MyHomePage extends StatelessWidget {
         items: const <BottomNavigationBarItem>[
           //Icons for Bottom Navigation Bar with Tabs !Keep in this order!
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded, color: Colors.white),
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.search_rounded, color: Colors.white),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle_rounded, color: Colors.white),
+            icon: Icon(Icons.star_rounded, color: Colors.white),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_rounded, color: Colors.white),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.mail_rounded, color: Colors.white),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.star_rounded, color: Colors.white),
+            icon: Icon(Icons.account_circle_rounded, color: Colors.white),
           ),
         ],
       ),
@@ -76,10 +74,22 @@ class MyHomePage extends StatelessWidget {
           case 1:
             return CupertinoTabView(builder: (context) {
               return CupertinoPageScaffold(
-                child: Page1(),
+                child: Favorites(),
               );
             });
           case 2:
+            return CupertinoTabView(builder: (context) {
+              return CupertinoPageScaffold(
+                child: Page0(),
+              );
+            });
+          case 3:
+            return CupertinoTabView(builder: (context) {
+              return CupertinoPageScaffold(
+                child: Messenger(),
+              );
+            });
+          case 4:
             return CupertinoTabView(builder: (context) {
               return CupertinoPageScaffold(
                 child: Page2(),
