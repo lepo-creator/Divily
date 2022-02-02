@@ -32,8 +32,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
+      debugShowCheckedModeBanner:
+          false, // Define Materiallocalisator for cupertino link betwenn android and materialapp
+      localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+        DefaultMaterialLocalizations.delegate,
+        DefaultWidgetsLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+      ], // Defines Materiallocalisation for cupertino app
       //Bottom Navigation Bar with Tabs
-      debugShowCheckedModeBanner: false,
       home: MyHomePage(),
       routes: {
         // 'p0': (_) => Page1(),
