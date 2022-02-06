@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-Color primaryGreen = Color(0xff416d6d); //Color definition
+Color primaryTeal = Colors.teal.shade100; //Color definition
 
 List<BoxShadow> shadowList = [
-  BoxShadow(color: Colors.grey.shade300, blurRadius: 30, offset: Offset(0, 10))
+  BoxShadow(color: Colors.grey.shade300, blurRadius: 10, offset: Offset(0, 10))
 ]; //Creates Box-Shadow behind Widgets/Containers
 
 List<Map> categories = [
