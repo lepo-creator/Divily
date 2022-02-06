@@ -13,7 +13,7 @@ class Favorites extends StatelessWidget {
           title: SizedBox(
             height: 30.0,
             child: Image.asset(
-              'assets/images/logo2.png',
+              'assets/images/cat.png',
               fit: BoxFit.cover,
             ),
           ),
