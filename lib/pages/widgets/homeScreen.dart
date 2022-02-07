@@ -1,5 +1,6 @@
 //import 'dart:html';
 
+import 'package:divily/pages/widgets/detailedInformation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:divily/configuration.dart';
 import 'package:flutter/material.dart';
@@ -22,145 +23,229 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       transform: Matrix4.translationValues(xOffset, yOffset, 0)
-        ..scale(scaleFactor), //moving COntainer
+        ..scale(scaleFactor), //moving Container
       duration: Duration(milliseconds: 250),
-      color: Colors.grey.shade100,
+      color: Colors.white,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 50),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  isDrawerOpen //drawer open => back button; drawer closed => open
+                      ? IconButton(
+                          icon: Icon(Icons.arrow_back_ios),
+                          onPressed: () {
+                            setState(() {
+                              xOffset = 0;
+                              yOffset = 0;
+                              scaleFactor = 1;
+                              isDrawerOpen = false;
+                            });
+                          },
+                        )
+                      : IconButton(
+                          icon: Icon(Icons.menu),
+                          onPressed: () {
+                            setState(() {
+                              xOffset = 230;
+                              yOffset = 150;
+                              scaleFactor = 0.6;
+                              isDrawerOpen = true;
+                            });
+                          }),
+                  Column(
+                    //Shows Location in the top middle
+                    children: [
+                      Text('Location'),
+                      Row(
+                        children: [Icon(Icons.room_rounded), Text('Germany')],
+                      ),
+                    ],
+                  ),
+                  CircleAvatar(),
+                ],
+              ),
+            ),
+            Container(
+              //Search line/window with Icons and Dimensions
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: shadowList,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(Icons.search),
+                  Text('Search pet to adopt'),
+                  Icon(Icons.settings),
+                ],
+              ),
+            ),
+            Container(
+              //Row for categories
+              height: 110,
 
-      child: Column(
-        children: [
-          SizedBox(height: 50),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                isDrawerOpen //drawer open => back button; drawer closed => open
-                    ? IconButton(
-                        icon: Icon(Icons.arrow_back_ios),
-                        onPressed: () {
-                          setState(() {
-                            xOffset = 0;
-                            yOffset = 0;
-                            scaleFactor = 1;
-                            isDrawerOpen = false;
-                          });
-                        },
-                      )
-                    : IconButton(
-                        icon: Icon(Icons.menu),
-                        onPressed: () {
-                          setState(() {
-                            xOffset = 230;
-                            yOffset = 150;
-                            scaleFactor = 0.6;
-                            isDrawerOpen = true;
-                          });
-                        }),
-                Column(
-                  //Shows Location in the top middle
-                  children: [
-                    Text('Location'),
-                    Row(
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal, //Scrolling direction
+                itemCount: categories
+                    .length, //ListView as long as categories from file configuration.dart
+                itemBuilder: (context, index) {
+                  return Container(
+                    child: Column(
                       children: [
-                        Icon(
-                          Icons.location_on,
-                          color: primaryGreen,
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          margin: EdgeInsets.only(left: 20),
+                          decoration: BoxDecoration(
+                            color: Colors.teal.shade100,
+                            boxShadow: shadowList,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 10),
+                            child: Column(children: [
+                              Image.asset(
+                                categories[index][
+                                    'iconPath'], //refers to ListView from configuration.dart
+                                height: 50,
+                                width: 50,
+                                color: Colors.black,
+                              ),
+                              SizedBox(height: 2),
+                              Text(
+                                categories[index]['name'],
+                              ),
+                            ]),
+                          ),
                         ),
-                        Text('Germany')
                       ],
                     ),
-                  ],
+                  );
+                },
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            DetailedInformationCard())); //Navigation to the PAge with detailed Informations on the Item
+              },
+              child: Container(
+                height: 180,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  //boxShadow: shadowList,
                 ),
-                CircleAvatar(),
-              ],
-            ),
-          ),
-          Container(
-            //Search line/window with Icons and Dimensions
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(Icons.search),
-                Text('Search pet to adopt'),
-                Icon(Icons.settings),
-              ],
-            ),
-          ),
-          Container(
-            height: 120,
-            child: ListView.builder(
-              //Row for categories
-              scrollDirection: Axis.horizontal, //Scrolling direction
-              itemCount: categories
-                  .length, //ListView as long as categories from file configuration.dart
-              itemBuilder: (context, index) {
-                return Container(
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        margin: EdgeInsets.only(left: 20),
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Stack(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.teal.shade100,
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: shadowList,
+                            ),
+                            //margin: EdgeInsets.only(top: 50),
+                          ),
+                          Align(
+                            child: Container(
+                              margin: EdgeInsets.all(10),
+                              child: Image.asset(
+                                'assets/images/horse.png',
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.only(
+                          top: 0,
+                          bottom: 0,
+                        ), //Difference of height between left and right box
                         decoration: BoxDecoration(
                           color: Colors.white,
                           boxShadow: shadowList,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Image.asset(
-                          categories[index][
-                              'iconPath'], //refers to ListView from configuration.dart
-                          height: 50,
-                          width: 50,
-                          color: Colors.grey.shade700,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
                         ),
                       ),
-                      Text(
-                        categories[index]['name'],
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
-          Container(
-              height: 240,
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(children: [
-                Expanded(
-                  child: Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.blueGrey[300],
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: shadowList,
-                        ),
-                        margin: EdgeInsets.only(top: 50),
-                      ),
-                      Align(
-                        child: Image.asset('assets/images/pet-cat1.png'),
-                      )
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Expanded(
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              height: 180,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                //boxShadow: shadowList,
+              ),
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.teal.shade100,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: shadowList,
+                          ),
+                        ),
+                        Align(
+                          child: Container(
+                            padding: EdgeInsets.all(
+                                10), //Gap between picture and box
+                            child: Image.asset(
+                              'assets/images/rabbit.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
                     child: Container(
-                  margin: EdgeInsets.only(top: 60, bottom: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: shadowList,
-                      borderRadius: BorderRadius.only(
+                      margin: EdgeInsets.only(
+                          top: 0,
+                          bottom: 0), //Difference between left and right box
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: shadowList,
+                        borderRadius: BorderRadius.only(
                           topRight: Radius.circular(20),
-                          bottomRight: Radius.circular(20))),
-                ))
-              ]))
-        ],
+                          bottomRight: Radius.circular(20),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
