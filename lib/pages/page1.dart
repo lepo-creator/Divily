@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart'; // imports cupertino package for fancy layouts
 import 'package:flutter/material.dart'; // imports material package for material app class
+//import other files of divily
+import 'package:divily/configuration.dart';
 
 class Page1 extends StatelessWidget {
   static Route<dynamic> route() {
@@ -19,7 +21,7 @@ class Page1 extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: const Text('Suche'),
-          backgroundColor: Colors.teal.shade300,
+          backgroundColor: middleGreen,
         ),
         body: Center(
             child: ElevatedButton(
@@ -49,7 +51,7 @@ class SearchPage extends StatelessWidget {
             appBar: AppBar(
               centerTitle: true,
               title: const Text('Suche'),
-              backgroundColor: Colors.teal.shade300,
+              backgroundColor: middleGreen,
             ),
             body: Center(
               child: ElevatedButton(

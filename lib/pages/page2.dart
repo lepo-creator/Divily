@@ -5,6 +5,7 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart'; // imports Pars
 //own imports
 import './widgets/login.dart';
 import './widgets/registration.dart';
+import 'package:divily/configuration.dart';
 
 class Page2 extends StatelessWidget {
   Future<bool> hasUserLogged() async {
@@ -65,7 +66,7 @@ class NoUserPage extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Account'),
-          backgroundColor: Colors.teal.shade300,
+          backgroundColor: middleGreen,
         ),
         body: Row(
             mainAxisAlignment: MainAxisAlignment.center,

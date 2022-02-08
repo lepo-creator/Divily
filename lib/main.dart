@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart'; // imports cupertino package for fancy 
 import 'package:flutter/material.dart'; // imports material package for material app class
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart'; // imports Parse Server lib for Back4App
 
-//file import
+//own imports
+import 'package:divily/configuration.dart';
 import './pages/page1.dart';
 import './pages/page0.dart';
 import './pages/page2.dart';
@@ -54,23 +55,23 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
-        backgroundColor: Colors.teal.shade300,
+        backgroundColor: middleGreen,
         items: const <BottomNavigationBarItem>[
           //Icons for Bottom Navigation Bar with Tabs !Keep in this order!
           BottomNavigationBarItem(
             icon: Icon(Icons.search_rounded, color: Colors.white),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.star_rounded, color: Colors.white),
+            icon: Icon(Icons.favorite_border_rounded, color: Colors.white),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded, color: Colors.white),
+            icon: Icon(Icons.home_outlined, color: Colors.white),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.mail_rounded, color: Colors.white),
+            icon: Icon(Icons.mail_outline_rounded, color: Colors.white),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle_rounded, color: Colors.white),
+            icon: Icon(Icons.settings_outlined, color: Colors.white),
           ),
         ],
       ),
@@ -86,7 +87,7 @@ class MyHomePage extends StatelessWidget {
           case 2:
             return CupertinoTabView(builder: (context) {
               return CupertinoPageScaffold(
-                child: Page0(),
+                child: Page1(),
               );
             });
           case 3:

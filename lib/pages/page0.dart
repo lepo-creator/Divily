@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart'; // imports cupertino package for fancy layouts
 import 'package:flutter/material.dart'; // imports material package for material app class
+//import other files of divily
+import 'package:divily/configuration.dart';
 
 class Page0 extends StatelessWidget {
   //Page 0
@@ -26,7 +28,7 @@ class Page0 extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          backgroundColor: Colors.teal.shade300,
+          backgroundColor: middleGreen,
         ),
         body: CustomScrollView(
           slivers: [
@@ -35,7 +37,7 @@ class Page0 extends StatelessWidget {
               flexibleSpace: AppBar(
                 centerTitle: true,
                 title: Text('Titel'),
-                backgroundColor: Colors.grey.shade400,
+                backgroundColor: verylightGreen,
               ),
               expandedHeight: 50,
             ),

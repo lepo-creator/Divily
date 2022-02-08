@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart'; // imports cupertino package for fancy 
 import 'package:flutter/material.dart'; // imports material package for material app class
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart'; // imports Parse Server lib for Back4App
 
+//own imports
+import 'package:divily/configuration.dart';
 import '../page2.dart';
 
 class UserLoginPage extends StatefulWidget {
@@ -30,7 +32,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Benutzer Login'),
-          backgroundColor: Colors.teal.shade300,
+          backgroundColor: middleGreen,
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -42,15 +44,15 @@ class _UserLoginPageState extends State<UserLoginPage> {
                   height: 200,
                   child: Image.asset('assets/images/logo2.png'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
-                Center(
-                  child: const Text('Benutzer Login',
+                const Center(
+                  child: Text('Benutzer Login',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 TextField(

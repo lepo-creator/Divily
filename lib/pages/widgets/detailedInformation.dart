@@ -1,3 +1,4 @@
+//own imports
 import 'package:divily/configuration.dart';
 import 'package:flutter/material.dart';
 
@@ -18,10 +19,10 @@ class DetailedInformationCard extends StatelessWidget {
                 child: Stack(
                   children: [
                     Container(
-                      color: Colors.teal.shade100,
+                      color: lightBeige,
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 50, bottom: 50),
+                      margin: EdgeInsets.only(top: 50, bottom: 55),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Image.asset(
@@ -33,7 +34,7 @@ class DetailedInformationCard extends StatelessWidget {
               ),
               Expanded(
                 child: Container(
-                  color: Colors.white,
+                  color: primaryWhite,
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
@@ -58,30 +59,25 @@ class DetailedInformationCard extends StatelessWidget {
                                     height: 60,
                                     width: 60,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.teal
-                                          .shade300, //color declaration always in decoration if used
-                                    ),
-                                    child: Icon(
-                                      Icons.star_rounded,
-                                      color: Colors.white,
-                                    ),
+                                        borderRadius: BorderRadius.circular(10),
+                                        color:
+                                            darkGreen), //color declaration always in decoration if used
+                                    child: Icon(Icons.favorite_border_rounded,
+                                        color: primaryWhite, size: 30.0),
                                   ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
+                                  SizedBox(width: 15),
                                   Expanded(
                                     child: Container(
                                       height: 60,
                                       decoration: BoxDecoration(
-                                        color: Colors.teal.shade300,
-                                        borderRadius: BorderRadius.circular(20),
+                                        color: middleGreen,
+                                        borderRadius: BorderRadius.circular(35),
                                       ),
                                       child: Center(
                                         child: Text(
-                                          'Kaufen',
+                                          'Jetzt mieten',
                                           style: TextStyle(
-                                              color: Colors.white,
+                                              color: primaryBlack,
                                               fontSize: 24),
                                         ),
                                       ),
@@ -89,11 +85,6 @@ class DetailedInformationCard extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.lightGreen
-                                  .shade200, //when using decoration environment color has to be declared inside!
-                              borderRadius: BorderRadius.circular(20),
                             ),
                           ),
                         )
@@ -113,11 +104,12 @@ class DetailedInformationCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                      icon: Icon(Icons.arrow_back_ios),
+                      icon: Icon(Icons.arrow_back_rounded),
                       onPressed: () {
                         Navigator.pop(context);
                       }),
-                  IconButton(icon: Icon(Icons.share), onPressed: () {}),
+                  IconButton(
+                      icon: Icon(Icons.ios_share_rounded), onPressed: () {}),
                 ],
               ),
             ),

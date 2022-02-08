@@ -1,9 +1,10 @@
-//import 'dart:html';
-
-import 'package:divily/pages/widgets/detailedInformation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:divily/configuration.dart';
 import 'package:flutter/material.dart';
+
+//own imports
+import 'package:divily/configuration.dart';
+import 'package:divily/pages/widgets/detailedInformation.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       transform: Matrix4.translationValues(xOffset, yOffset, 0)
         ..scale(scaleFactor), //moving Container
       duration: Duration(milliseconds: 250),
-      color: Colors.white,
+      color: primaryWhite,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -66,23 +67,32 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  CircleAvatar(),
+                  Container(
+                    child: CircleAvatar(radius: 25.0),
+                    decoration: BoxDecoration(
+                        boxShadow: shadowList,
+                        borderRadius: BorderRadius.circular(
+                            25.0)), //Shadow of the Circle Avatar
+                  ),
                 ],
               ),
             ),
             Container(
               //Search line/window with Icons and Dimensions
+              height: 60,
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
+                color: primaryWhite,
+                borderRadius:
+                    BorderRadius.circular(35), //rounded edges of search line
                 boxShadow: shadowList,
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment:
+                    MainAxisAlignment.spaceBetween, //sets text in the middle
                 children: [
-                  Icon(Icons.search),
+                  Icon(Icons.search_rounded),
                   Text('Search pet to adopt'),
                   Icon(Icons.settings),
                 ],
@@ -91,7 +101,6 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               //Row for categories
               height: 110,
-
               child: ListView.builder(
                 scrollDirection: Axis.horizontal, //Scrolling direction
                 itemCount: categories
@@ -104,9 +113,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: EdgeInsets.all(10),
                           margin: EdgeInsets.only(left: 20),
                           decoration: BoxDecoration(
-                            color: Colors.teal.shade100,
+                            color: verylightGreen,
                             boxShadow: shadowList,
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(10),
                           ),
                           child: Container(
                             margin: EdgeInsets.symmetric(horizontal: 10),
@@ -116,11 +125,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                     'iconPath'], //refers to ListView from configuration.dart
                                 height: 50,
                                 width: 50,
-                                color: Colors.black,
+                                color: primaryBlack,
                               ),
-                              SizedBox(height: 2),
+                              SizedBox(
+                                  height:
+                                      2), //distance between icon/image and text
                               Text(
-                                categories[index]['name'],
+                                categories[index][
+                                    'name'], //refers to ListView from configuration.dart
                               ),
                             ]),
                           ),
@@ -137,14 +149,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            DetailedInformationCard())); //Navigation to the PAge with detailed Informations on the Item
+                            DetailedInformationCard())); //Navigation to the Page with detailed Informations on the Item
               },
               child: Container(
-                height: 180,
+                height: 150,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  //boxShadow: shadowList,
+                  color: primaryWhite,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: shadowList,
                 ),
                 margin: EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -154,11 +166,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              color: Colors.teal.shade100,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: shadowList,
+                              color: lightBeige,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: shadowList2,
                             ),
-                            //margin: EdgeInsets.only(top: 50),
                           ),
                           Align(
                             child: Container(
@@ -173,18 +184,36 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Expanded(
+                      //Information text next to the picture
                       child: Container(
-                        margin: EdgeInsets.only(
-                          top: 0,
-                          bottom: 0,
-                        ), //Difference of height between left and right box
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: shadowList,
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(20),
-                            bottomRight: Radius.circular(20),
-                          ),
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(vertical: 5),
+                              height: 15,
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  'Titel des Produkts',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              height: 100,
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                    'Weitere Informationen zum Produkt stehen hier, aber möglicherweise entsteht ein Problem, wenn der Text zu lang wird'),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -192,13 +221,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20), //Distance between the two widgets
             Container(
-              height: 180,
+              height: 150,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                //boxShadow: shadowList,
+                color: primaryWhite,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: shadowList,
               ),
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -208,17 +237,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.teal.shade100,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: shadowList,
+                            color: lightGreen,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: shadowList2,
                           ),
                         ),
                         Align(
                           child: Container(
-                            padding: EdgeInsets.all(
-                                10), //Gap between picture and box
+                            margin: EdgeInsets.all(10),
                             child: Image.asset(
-                              'assets/images/rabbit.png',
+                              'assets/images/horse.png',
                               fit: BoxFit.contain,
                             ),
                           ),
@@ -228,22 +256,58 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Expanded(
                     child: Container(
-                      margin: EdgeInsets.only(
-                          top: 0,
-                          bottom: 0), //Difference between left and right box
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: shadowList,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                        ),
+                      child: Center(
+                        child: Text('Hallo'),
                       ),
                     ),
                   ),
                 ],
               ),
             ),
+            const SizedBox(height: 20), //Distance between the two widgets
+            Container(
+              height: 150,
+              decoration: BoxDecoration(
+                color: primaryWhite,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: shadowList,
+              ),
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: lightGreen,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: shadowList2,
+                          ),
+                        ),
+                        Align(
+                          child: Container(
+                            margin: EdgeInsets.all(10),
+                            child: Image.asset(
+                              'assets/images/horse.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      child: Center(
+                        child: Text('Hallo'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20), //Distance between the two widgets
           ],
         ),
       ),

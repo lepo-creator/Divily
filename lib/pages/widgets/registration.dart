@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart'; // imports cupertino package for fancy 
 import 'package:flutter/material.dart'; // imports material package for material app class
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart'; // imports Parse Server lib for Back4App
 
+//own imports
+import 'package:divily/configuration.dart';
 import '../page2.dart';
 
 class RegistrationPage extends StatefulWidget {
@@ -31,7 +33,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Benutzerregistrierung'),
-          backgroundColor: Colors.teal.shade300,
+          backgroundColor: middleGreen,
         ),
         body: Center(
           child: SingleChildScrollView(
