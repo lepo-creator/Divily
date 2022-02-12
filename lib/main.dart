@@ -87,7 +87,7 @@ class MyHomePage extends StatelessWidget {
           case 2:
             return CupertinoTabView(builder: (context) {
               return CupertinoPageScaffold(
-                child: Page1(),
+                child: Home(),
               );
             });
           case 3:

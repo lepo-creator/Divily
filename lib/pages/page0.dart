@@ -5,13 +5,6 @@ import 'package:divily/configuration.dart';
 
 class Page0 extends StatelessWidget {
   //Page 0
-  static Route<dynamic> route() {
-    return CupertinoPageRoute(
-      builder: (BuildContext context) {
-        return Page0();
-      },
-    );
-  }
 
   const Page0({Key? key}) : super(key: key);
 
