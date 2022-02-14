@@ -1,4 +1,3 @@
-import 'package:divily/pages/test.dart';
 import 'package:flutter/cupertino.dart'; // imports cupertino package for fancy layouts
 import 'package:flutter/material.dart'; // imports material package for material app class
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart'; // imports Parse Server lib for Back4App
@@ -7,10 +6,11 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart'; // imports Pars
 import 'package:divily/configuration.dart';
 import './pages/page1.dart';
 import './pages/page0.dart';
-import './pages/test.dart';
+import './pages/newAdvert.dart';
 import './pages/page2.dart';
 import './pages/favorites.dart';
 import './pages/messenger.dart';
+import 'package:divily/pages/widgets/createList.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -83,7 +83,7 @@ class MyHomePage extends StatelessWidget {
           case 1:
             return CupertinoTabView(builder: (context) {
               return CupertinoPageScaffold(
-                child: Favorites(),
+                child: ListOfAds(),
               );
             });
           case 2:

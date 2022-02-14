@@ -30,71 +30,61 @@ class _UserLoginPageState extends State<UserLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Benutzer Login'),
-          backgroundColor: middleGreen,
-        ),
-        body: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Container(
-                  height: 200,
-                  child: Image.asset('assets/images/logo2.png'),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                const Center(
-                  child: Text('Benutzer Login',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                TextField(
-                  controller: controllerUsername,
-                  enabled: !isLoggedIn,
-                  keyboardType: TextInputType.text,
-                  textCapitalization: TextCapitalization.none,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'Benutzername'),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                TextField(
-                  controller: controllerPassword,
-                  enabled: !isLoggedIn,
-                  obscureText: true,
-                  keyboardType: TextInputType.text,
-                  textCapitalization: TextCapitalization.none,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'Passwort'),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  height: 50,
-                  child: TextButton(
-                    child: const Text('Einloggen'),
-                    onPressed: isLoggedIn ? null : () => doUserLogin(),
-                  ),
-                ),
-              ],
+      appBar: AppBar(
+        title: const Text('Benutzer Login'),
+        backgroundColor: middleGreen,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          //crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              height: 200,
+              child: Image.asset('assets/images/logo2.png'),
             ),
-          ),
-        ));
+            const SizedBox(height: 16),
+            const Center(
+              child: Text('Benutzer Login',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: controllerUsername,
+              enabled: !isLoggedIn,
+              keyboardType: TextInputType.text,
+              textCapitalization: TextCapitalization.none,
+              autocorrect: false,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  hintText: 'Benutzername'),
+            ),
+            SizedBox(height: 8),
+            TextField(
+              controller: controllerPassword,
+              enabled: !isLoggedIn,
+              obscureText: true,
+              keyboardType: TextInputType.text,
+              textCapitalization: TextCapitalization.none,
+              autocorrect: false,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  hintText: 'Passwort'),
+            ),
+            SizedBox(height: 16),
+            Container(
+              height: 50,
+              child: TextButton(
+                child: const Text('Einloggen'),
+                onPressed: isLoggedIn ? null : () => doUserLogin(),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   void showSuccess(String message) {

@@ -3,8 +3,15 @@ import 'package:flutter/material.dart';
 //own imports
 import 'package:divily/configuration.dart';
 
-class DetailedInformationCard extends StatelessWidget {
-  const DetailedInformationCard({Key? key}) : super(key: key);
+class DetailedPage extends StatelessWidget {
+  final String varTitle; //get variables from previous page
+  final String varInfo;
+
+  const DetailedPage(
+      {Key? key,
+      required this.varTitle,
+      required this.varInfo}) //get variables from previous page
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +47,7 @@ class DetailedInformationCard extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: 80),
-                        Text('Hallo'),
+                        Text('Hallo'), //text
                         SizedBox(height: 100),
                         Text('Hallo'),
                         SizedBox(height: 100),
@@ -133,7 +140,7 @@ class DetailedInformationCard extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Artikelname',
+                        Text(varTitle,
                             style: TextStyle(
                                 fontSize: 19, fontWeight: FontWeight.bold)),
                         Icon(Icons.home_rounded),
@@ -145,8 +152,8 @@ class DetailedInformationCard extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Basisinformationen zum Artikel'),
-                        Text('Weitere Infos'),
+                        Text(varInfo),
+                        //Text('Weitere Infos'),
                       ],
                     ),
                   ),
