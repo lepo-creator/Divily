@@ -63,3 +63,23 @@ List<Map> adverts = [
     'imagePath': 'assets/images/rabbit.png'
   },
 ];
+
+// The DismissKeybaord widget to make the keyboard go away when you click outside a textfield
+class DismissKeyboard extends StatelessWidget {
+  final Widget child;
+  const DismissKeyboard({Key? key, required this.child}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
+      },
+      child: child,
+    );
+  }
+}

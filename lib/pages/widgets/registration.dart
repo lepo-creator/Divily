@@ -31,6 +31,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: const Text('Benutzerregistrierung'),
           backgroundColor: middleGreen,
@@ -45,15 +46,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   height: 200,
                   child: Image.asset('assets/images/logo2.png'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
-                Center(
-                  child: const Text('Benutzerregistrierung',
+                const Center(
+                  child: Text('Benutzerregistrierung',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 TextField(
@@ -61,12 +62,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   keyboardType: TextInputType.text,
                   textCapitalization: TextCapitalization.none,
                   autocorrect: false,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
                       labelText: 'Benutzername'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 TextField(
@@ -74,12 +75,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   keyboardType: TextInputType.emailAddress,
                   textCapitalization: TextCapitalization.none,
                   autocorrect: false,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
                       labelText: 'E-mail'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 TextField(
@@ -88,17 +89,20 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   keyboardType: TextInputType.text,
                   textCapitalization: TextCapitalization.none,
                   autocorrect: false,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
                       labelText: 'Passwort'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
-                Container(
+                SizedBox(
                   height: 50,
-                  child: TextButton(
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(darkGrey)),
                     child: const Text('Registrieren'),
                     onPressed: () => doUserRegistration(),
                   ),

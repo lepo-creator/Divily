@@ -24,7 +24,10 @@ void main() async {
       clientKey: keyClientKey,
       autoSendSessionId: true);
 
-  runApp(MyApp());
+  runApp(const DismissKeyboard(
+    // warped the whole app with the dismissKeyboard class to make the keyboard go away when clicking outside the textfield
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

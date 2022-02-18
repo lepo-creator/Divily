@@ -7,8 +7,16 @@ import './widgets/login.dart';
 import './widgets/registration.dart';
 import 'package:divily/configuration.dart';
 
-class Page2 extends StatelessWidget {
+class Page2 extends StatefulWidget {
+  const Page2({Key? key}) : super(key: key);
+
+  @override
+  State<Page2> createState() => _Page2State();
+}
+
+class _Page2State extends State<Page2> {
   Future<bool> hasUserLogged() async {
+    //gets the user login token information from parse Server
     ParseUser? currentUser = await ParseUser.currentUser() as ParseUser?;
     if (currentUser == null) {
       return false;
@@ -26,13 +34,21 @@ class Page2 extends StatelessWidget {
     }
   }
 
-  const Page2({Key? key}) : super(key: key);
+  late final Future<bool>? myFuture; //defines dynamic future variable
+
+  @override
+  void initState() {
+    super.initState();
+    myFuture =
+        hasUserLogged(); //defines futurevariable in initState ->not effected by rebuild see https://stackoverflow.com/questions/57793479/flutter-futurebuilder-gets-constantly-called
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: FutureBuilder<bool>(
-          future: hasUserLogged(),
+          future:
+              myFuture, // defines "const" future variable as input for build
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.none:
@@ -55,6 +71,13 @@ class Page2 extends StatelessWidget {
           }),
     );
   }
+
+  @override
+  State<StatefulWidget> createState() {
+    // State maybe not needed
+    // TODO: implement createState
+    throw UnimplementedError();
+  }
 }
 
 class NoUserPage extends StatelessWidget {
@@ -69,26 +92,37 @@ class NoUserPage extends StatelessWidget {
           backgroundColor: middleGreen,
         ),
         body: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  ElevatedButton(
-                      child: const Text('Einloggen'),
-                      onPressed: () =>
-                          Navigator.of(context).push(UserLoginPage.route())),
-                  ElevatedButton(
-                    child: const Text('Registrierung'),
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(darkGrey)),
+                    child: const Text('Einloggen'),
                     onPressed: () {
-                      Navigator.of(context).push(RegistrationPage.route());
-                    },
-                  )
-                ],
-              )
-            ]),
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UserLoginPage()));
+                    }),
+                ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(darkGrey)),
+                  child: const Text('Registrierung'),
+                  onPressed: () {
+                    Navigator.of(context).push(RegistrationPage.route());
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -188,7 +222,7 @@ class UserPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Benutzerseite'),
-          backgroundColor: Colors.teal.shade300,
+          backgroundColor: middleGreen,
         ),
         body: FutureBuilder<ParseUser?>(
             future: getUser(),

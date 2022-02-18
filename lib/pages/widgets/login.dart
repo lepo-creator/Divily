@@ -30,56 +30,73 @@ class _UserLoginPageState extends State<UserLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Benutzer Login'),
         backgroundColor: middleGreen,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10), // add edges looks better
         child: Column(
-          //crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              height: 200,
-              child: Image.asset('assets/images/logo2.png'),
+            SizedBox(
+              height: 200, //defines Logo height
+              child:
+                  Image.asset('assets/images/logo2.png'), // inserts Divily Logo
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 16), // spacing of 16 px
             const Center(
               child: Text('Benutzer Login',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             ),
             const SizedBox(height: 16),
-            TextField(
-              controller: controllerUsername,
-              enabled: !isLoggedIn,
-              keyboardType: TextInputType.text,
-              textCapitalization: TextCapitalization.none,
-              autocorrect: false,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black)),
-                  hintText: 'Benutzername'),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: controllerUsername,
+                    enabled: !isLoggedIn,
+                    keyboardType: TextInputType.text,
+                    textCapitalization: TextCapitalization.none,
+                    autocorrect: false,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black)),
+                        hintText: 'Benutzername'),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 8),
-            TextField(
-              controller: controllerPassword,
-              enabled: !isLoggedIn,
-              obscureText: true,
-              keyboardType: TextInputType.text,
-              textCapitalization: TextCapitalization.none,
-              autocorrect: false,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black)),
-                  hintText: 'Passwort'),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: controllerPassword,
+                    enabled: !isLoggedIn,
+                    obscureText: true,
+                    keyboardType: TextInputType.text,
+                    textCapitalization: TextCapitalization.none,
+                    autocorrect: false,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black)),
+                        hintText: 'Passwort'),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 16),
-            Container(
+            const SizedBox(height: 16),
+            SizedBox(
               height: 50,
-              child: TextButton(
+              child: (ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(darkGrey)),
                 child: const Text('Einloggen'),
                 onPressed: isLoggedIn ? null : () => doUserLogin(),
-              ),
+              )),
             ),
           ],
         ),
