@@ -167,11 +167,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
       var response = await user.signUp(); //awaits for server response
 
       if (response.success) {
-        showSuccess();
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const Page2()),
-          (Route<dynamic> route) => false,
+        Message.showSuccess(
+          context: context,
+          message:
+              'Benutzer wurde erfolgreich erstellt! Bitte überprüfen Sie Ihre E-Mail-Adresse, bevor Sie sich anmelden.',
+          onPressed: () async {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const Page2()),
+              (Route<dynamic> route) => false,
+            );
+          },
         );
       } else {
         showError(
