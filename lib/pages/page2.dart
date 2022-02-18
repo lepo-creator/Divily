@@ -6,6 +6,7 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart'; // imports Pars
 import './widgets/login.dart';
 import './widgets/registration.dart';
 import 'package:divily/configuration.dart';
+import './profilpage.dart';
 
 class Page2 extends StatefulWidget {
   const Page2({Key? key}) : super(key: key);
@@ -63,7 +64,7 @@ class _Page2State extends State<Page2> {
                 );
               default:
                 if (snapshot.hasData && snapshot.data!) {
-                  return UserPage();
+                  return ProfilPage();
                 } else {
                   return const NoUserPage();
                 }
@@ -181,87 +182,5 @@ class Message {
         );
       },
     );
-  }
-}
-
-class UserPage extends StatelessWidget {
-  ParseUser? currentUser;
-  static Route<dynamic> route() {
-    return CupertinoPageRoute(
-      builder: (BuildContext context) {
-        return UserPage();
-      },
-    );
-  }
-
-  Future<ParseUser?> getUser() async {
-    currentUser = await ParseUser.currentUser() as ParseUser?;
-    return currentUser;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    void doUserLogout() async {
-      var response = await currentUser!.logout();
-      if (response.success) {
-        Message.showSuccess(
-            context: context,
-            message: 'Benutzer erfolgreich ausgeloggt!',
-            onPressed: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => const Page2()),
-                (Route<dynamic> route) => false,
-              );
-            });
-      } else {
-        Message.showError(context: context, message: response.error!.message);
-      }
-    }
-
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Benutzerseite'),
-          backgroundColor: middleGreen,
-        ),
-        body: FutureBuilder<ParseUser?>(
-            future: getUser(),
-            builder: (context, snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.none:
-                case ConnectionState.waiting:
-                  return const Center(
-                    child: SizedBox(
-                        width: 100,
-                        height: 100,
-                        child: CircularProgressIndicator()),
-                  );
-                default:
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                            child: Text('Hallo, ${snapshot.data!.username}')),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        SizedBox(
-                          height: 50,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(darkGrey)),
-                            child: const Text('Ausloggen'),
-                            onPressed: () => doUserLogout(),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-              }
-            }));
   }
 }

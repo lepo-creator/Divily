@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
+    return const CupertinoApp(
       debugShowCheckedModeBanner:
           false, // Define Materiallocalisator for cupertino link betwenn android and materialapp
       localizationsDelegates: <LocalizationsDelegate<dynamic>>[
