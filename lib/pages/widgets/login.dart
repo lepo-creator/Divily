@@ -5,6 +5,7 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart'; // imports Pars
 //own imports
 import 'package:divily/configuration.dart';
 import '../page2.dart';
+import './resetpassword.dart';
 
 class UserLoginPage extends StatefulWidget {
   static Route<dynamic> route() {
@@ -98,9 +99,32 @@ class _UserLoginPageState extends State<UserLoginPage> {
                 onPressed: isLoggedIn ? null : () => doUserLogin(),
               )),
             ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 50,
+              child: (FlatButton(
+                textColor: Colors.black,
+                // decoration: TextDecoration.underline,
+                // style: ButtonStyle(
+                //     backgroundColor:
+                //         MaterialStateProperty.all<Color>(darkGrey)),
+                child: const Text('Passwort vergessen',
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                    )),
+                onPressed: () => navigateToResetPassword(),
+              )),
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  void navigateToResetPassword() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ResetPasswordPage()),
     );
   }
 

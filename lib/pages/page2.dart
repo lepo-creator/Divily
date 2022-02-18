@@ -142,7 +142,7 @@ class Message {
           title: const Text("Erfolg!"),
           content: Text(message),
           actions: <Widget>[
-            new ElevatedButton(
+            ElevatedButton(
               child: const Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -168,7 +168,7 @@ class Message {
           title: const Text("Fehler!"),
           content: Text(message),
           actions: <Widget>[
-            new ElevatedButton(
+            ElevatedButton(
               child: const Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
