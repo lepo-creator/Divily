@@ -145,21 +145,28 @@ class _UserLoginPageState extends State<UserLoginPage> {
   }
 
   void doUserLogin() async {
-    final username = controllerUsername.text.trim();
-    final password = controllerPassword.text.trim();
-
-    final user = ParseUser(username, password, null);
-
-    var response = await user.login();
-
-    if (response.success) {
-      showSuccess("Benutzer erfolgreich eingeloggt!");
-      setState(() {
-        isLoggedIn = true;
-        navigateToUser();
-      });
+    final username =
+        controllerUsername.text.trim(); //defines textfield input as variable
+    final password =
+        controllerPassword.text.trim(); //defines textfield input as variable
+    if (username == '' || password == '') {
+      //checks weather the textfield are empty
+      showError("Bitte fülle alle Textfelder aus!"); // returns error
     } else {
-      showError(response.error!.message);
+      final user =
+          ParseUser(username, password, null); //defines parse user variable
+
+      var response = await user.login(); //waits for parse server reponse
+
+      if (response.success) {
+        showSuccess("Benutzer erfolgreich eingeloggt!");
+        setState(() {
+          isLoggedIn = true;
+          navigateToUser();
+        });
+      } else {
+        showError(response.error!.message); //prints parse server response error
+      }
     }
   }
 

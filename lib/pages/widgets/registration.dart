@@ -138,7 +138,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Error!"),
+          title: const Text("Fehler!"),
           content: Text(errorMessage),
           actions: <Widget>[
             new FlatButton(
@@ -157,20 +157,26 @@ class _RegistrationPageState extends State<RegistrationPage> {
     final username = controllerUsername.text.trim();
     final email = controllerEmail.text.trim();
     final password = controllerPassword.text.trim();
-
-    final user = ParseUser.createUser(username, password, email);
-
-    var response = await user.signUp();
-
-    if (response.success) {
-      showSuccess();
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => const Page2()),
-        (Route<dynamic> route) => false,
-      );
+    if (username == '' || password == '' || email == '') {
+      // checks whether all field are filled
+      showError("Bitte fülle alle Textfelder aus!"); //returns error
     } else {
-      showError(response.error!.message);
+      final user = ParseUser.createUser(
+          username, password, email); // creates parse user object
+
+      var response = await user.signUp(); //awaits for server response
+
+      if (response.success) {
+        showSuccess();
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const Page2()),
+          (Route<dynamic> route) => false,
+        );
+      } else {
+        showError(
+            response.error!.message); // show server response error message
+      }
     }
   }
 }
