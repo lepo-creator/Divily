@@ -8,6 +8,7 @@ import './page2.dart';
 import './widgets/profile_widget.dart';
 import 'package:divily/model/user.dart';
 import './widgets/numbers_widget.dart';
+import 'package:divily/pages/edit_profil_page.dart';
 
 class ProfilPage extends StatefulWidget {
   @override
@@ -82,7 +83,13 @@ class _ProfilPageState extends State<ProfilPage> {
                       physics: const BouncingScrollPhysics(),
                       children: [
                         ProfileWidget(
-                            imagePath: user.imagePath, onClicked: () async {}),
+                            imagePath: user.imagePath,
+                            onClicked: () async {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => EditProfilePage()));
+                            }),
                         const SizedBox(height: 24),
                         buildName(user),
                         const SizedBox(height: 24),
