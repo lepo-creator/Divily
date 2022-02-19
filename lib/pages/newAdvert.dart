@@ -14,12 +14,17 @@ class Test extends StatefulWidget {
 class _HomeState extends State<Test> {
   final advertTitleController = TextEditingController();
   final advertInfoController = TextEditingController();
+  final advertPriceController = TextEditingController();
+  final advertDetailController = TextEditingController();
 
   void addAdvert() async {
-    await saveAdvert(advertTitleController.text, advertInfoController.text);
+    await saveAdvert(advertTitleController.text, advertInfoController.text,
+        advertPriceController.text, advertDetailController.text);
     setState(() {
       advertTitleController.clear();
       advertInfoController.clear();
+      advertPriceController.clear();
+      advertDetailController.clear();
     });
   }
 
@@ -38,7 +43,12 @@ class _HomeState extends State<Test> {
               margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               child: Column(
                 children: [
-                  SizedBox(height: 10),
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: 20, right: 20, top: 10, bottom: 5),
+                    child: Align(
+                        child: Text('Titel'), alignment: Alignment.topLeft),
+                  ),
                   Row(
                     children: <Widget>[
                       Expanded(
@@ -51,13 +61,20 @@ class _HomeState extends State<Test> {
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10)),
                             hintText: "Titel eingeben",
+                            prefixIcon: Icon(Icons.title_rounded),
                             hintStyle: TextStyle(color: Colors.grey.shade600),
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 10), //Distance between textfields
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: 20, right: 20, top: 10, bottom: 5),
+                    child: Align(
+                        child: Text('Kurzbeschreibung'),
+                        alignment: Alignment.topLeft),
+                  ),
                   Row(
                     children: [
                       Expanded(
@@ -70,13 +87,44 @@ class _HomeState extends State<Test> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10)),
                               hintText: "Produktbeschreibung eingeben",
+                              prefixIcon: Icon(Icons.short_text_rounded),
                               hintStyle:
                                   TextStyle(color: Colors.grey.shade600)),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 10), //Distance between textfields
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: 20, right: 20, top: 10, bottom: 5),
+                    child: Align(
+                        child: Text('Preis (€/Tag)'),
+                        alignment: Alignment.topLeft),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          autocorrect: false,
+                          textCapitalization: TextCapitalization.sentences,
+                          controller: advertPriceController, //Textfield price
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              hintText: "Preis eingeben",
+                              prefixIcon: Icon(Icons.euro_rounded),
+                              hintStyle:
+                                  TextStyle(color: Colors.grey.shade600)),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: 20, right: 20, top: 10, bottom: 5),
+                    child: Align(
+                        child: Text('Details'), alignment: Alignment.topLeft),
+                  ),
                   Row(
                     children: [
                       Expanded(
@@ -85,12 +133,13 @@ class _HomeState extends State<Test> {
                           autocorrect: false,
                           textCapitalization: TextCapitalization.sentences,
                           controller:
-                              advertInfoController, //Textfield for additional informations on the product
+                              advertDetailController, //Textfield for additional informations on the product
                           decoration: InputDecoration(
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10)),
                               hintText:
                                   "Detaillierte Beschreibung zum Produkt einfügen",
+                              prefixIcon: Icon(Icons.notes_rounded),
                               hintStyle:
                                   TextStyle(color: Colors.grey.shade600)),
                         ),
@@ -107,7 +156,7 @@ class _HomeState extends State<Test> {
                     ),
                     onPressed:
                         addAdvert, //runs function for saving the strings when pressed
-                    child: Text("OK"),
+                    child: Text("Anzeige erstellen"),
                   ),
                 ],
               ),
@@ -118,11 +167,14 @@ class _HomeState extends State<Test> {
     );
   }
 
-  Future<void> saveAdvert(String title, String info) async {
+  Future<void> saveAdvert(
+      String title, String info, String price, String detail) async {
     //function for creating a new entry in back4app
     final ad = ParseObject('Todo') //path to the folder
       ..set('title', title) //path to the column of back4app
-      ..set('info', info);
+      ..set('info', info)
+      ..set('price', price)
+      ..set('detail', detail);
 
     await ad.save();
   }

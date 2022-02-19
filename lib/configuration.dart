@@ -35,35 +35,6 @@ List<Map> categories = [
   {'name': 'Horses', 'iconPath': 'assets/images/horse.png'},
 ];
 
-List<Map> adverts = [
-  //List for Informations in adverts
-  {
-    'title': 'Anzeige 1',
-    'info': 'Dies ist weiterer Informationstext',
-    'imagePath': 'assets/images/cat.png'
-  },
-  {
-    'title': 'Anzeige 2',
-    'info': 'Dies ist weiterer Informationstext',
-    'imagePath': 'assets/images/dog.png'
-  },
-  {
-    'title': 'Anzeige 3',
-    'info': 'Dies ist weiterer Informationstext',
-    'imagePath': 'assets/images/horse.png'
-  },
-  {
-    'title': 'Anzeige 4',
-    'info': 'Dies ist weiterer Informationstext',
-    'imagePath': 'assets/images/parrot.png'
-  },
-  {
-    'title': 'Anzeige 5',
-    'info': 'Dies ist weiterer Informationstext',
-    'imagePath': 'assets/images/rabbit.png'
-  },
-];
-
 // The DismissKeybaord widget to make the keyboard go away when you click outside a textfield
 class DismissKeyboard extends StatelessWidget {
   final Widget child;

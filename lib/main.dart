@@ -4,12 +4,8 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart'; // imports Pars
 
 //own imports
 import 'package:divily/configuration.dart';
-import './pages/page1.dart';
-import './pages/page0.dart';
 import './pages/newAdvert.dart';
 import './pages/page2.dart';
-import './pages/favorites.dart';
-import './pages/messenger.dart';
 import 'package:divily/pages/widgets/createList.dart';
 
 void main() async {
@@ -92,13 +88,13 @@ class MyHomePage extends StatelessWidget {
           case 2:
             return CupertinoTabView(builder: (context) {
               return CupertinoPageScaffold(
-                child: Page0(),
+                child: ListOfAds(),
               );
             });
           case 3:
             return CupertinoTabView(builder: (context) {
               return CupertinoPageScaffold(
-                child: Messenger(),
+                child: ListOfAds(),
               );
             });
           case 4:
