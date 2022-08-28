@@ -1,3 +1,4 @@
+import 'package:divily/pages/profilpage.dart';
 import 'package:divily/utils/user_preferences.dart';
 import 'package:flutter/material.dart';
 
@@ -36,20 +37,38 @@ class _EditProfilePageState extends State<EditProfilePage> {
             TextFieldWidget(
               label: 'Vollständiger Name',
               text: user.name,
-              onChanged: (name) {},
+              onChanged: (name) => user = user.copy(name: name),
             ),
             const SizedBox(height: 24),
             TextFieldWidget(
               label: 'E-Mail',
               text: user.email,
-              onChanged: (email) {},
+              onChanged: (email) => user = user.copy(email: email),
             ),
             const SizedBox(height: 24),
             TextFieldWidget(
               label: 'Beschreibung',
               text: user.about,
               maxLines: 5,
-              onChanged: (about) {},
+              onChanged: (about) => user = user.copy(about: about),
+            ),
+            const SizedBox(height: 24),
+            SizedBox(
+              height: 50,
+              child: (ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(darkGrey)),
+                child: const Text('Speichern'),
+                onPressed: () {
+                  UserPreferences.setUser(user);
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProfilPage()),
+                    (Route<dynamic> route) => false,
+                  );
+                },
+              )),
             ),
           ],
         ),

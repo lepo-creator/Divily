@@ -28,7 +28,20 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   google_fonts: ^2.3.1
+
+  #parse Server packages for connection to Back4App
   parse_server_sdk_flutter: ^3.1.0
+
+  # persist locally data
+  shared_preferences: ^2.0.15 # packages for storing data locally on the device
+
+  # picks image
+  image_picker: ^0.8.5+3
+
+  # stores images
+  path_provider: ^2.0.11
+
+
   flutter:
     sdk: flutter
     

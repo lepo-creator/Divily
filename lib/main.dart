@@ -1,3 +1,4 @@
+import 'package:divily/utils/user_preferences.dart';
 import 'package:flutter/cupertino.dart'; // imports cupertino package for fancy layouts
 import 'package:flutter/material.dart'; // imports material package for material app class
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart'; // imports Parse Server lib for Back4App
@@ -19,6 +20,8 @@ void main() async {
       keyParseServerUrl, // Connects Divily with the Back4APP Backend
       clientKey: keyClientKey,
       autoSendSessionId: true);
+
+  await UserPreferences.init(); // stores data locally on the device
 
   runApp(const DismissKeyboard(
     // warped the whole app with the dismissKeyboard class to make the keyboard go away when clicking outside the textfield

@@ -17,7 +17,7 @@ class ProfilPage extends StatefulWidget {
 
 class _ProfilPageState extends State<ProfilPage> {
   ParseUser? currentUser;
-  final user = UserPreferences.myUser; // user pref added
+  final user = UserPreferences.getUser(); // user pref added
 
   Future<ParseUser?> getUser() async {
     currentUser = await ParseUser.currentUser() as ParseUser?;
@@ -83,13 +83,15 @@ class _ProfilPageState extends State<ProfilPage> {
                       physics: const BouncingScrollPhysics(),
                       children: [
                         ProfileWidget(
-                            imagePath: user.imagePath,
-                            onClicked: () async {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => EditProfilePage()));
-                            }),
+                          imagePath: user.imagePath,
+                          onClicked: () async {
+                            await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EditProfilePage()));
+                            setState(() {}); //Rebuilds page
+                          },
+                        ),
                         const SizedBox(height: 24),
                         buildName(user),
                         const SizedBox(height: 24),

@@ -10,4 +10,30 @@ class User {
     required this.email,
     required this.about,
   });
+  User copy({
+    String? imagePath,
+    String? name,
+    String? email,
+    String? about,
+  }) =>
+      User(
+        imagePath: imagePath ?? this.imagePath,
+        name: name ?? this.name,
+        email: email ?? this.email,
+        about: about ?? this.about,
+      );
+
+  static User fromJson(Map<String, dynamic> json) => User(
+        imagePath: json['imagePath'],
+        name: json['name'],
+        email: json['email'],
+        about: json['about'],
+      ); // function to get the User information von json file
+
+  Map<String, dynamic> toJson() => {
+        'imagePath': imagePath,
+        'name': name,
+        'email': email,
+        'about': about,
+      }; // function used to convert userinformation in one json string
 }
